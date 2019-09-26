@@ -1,18 +1,41 @@
 package com.virtusa.DAO;
 
+import java.util.List;
+
+
 import com.virtusa.entities.User;
-import com.virtusa.utilties.UserTypes;
+import com.virtusa.repository.UserRepository;
+import com.virtusa.utilities.UserTypes;
+
 
 public class UserDAOImplementation implements UserDAO{
 
-
+private List<User> userList=null;
+ 
+public UserDAOImplementation() {
 	
+	this.userList=UserRepository.getUserRepository();
+}
+
 
 	@Override
 	public boolean userAuth(String userName, String password) {
 		// TODO Auto-generated method stub
-		return false;
+		boolean result=false;
+
 		
+		for(User user:userList) {
+			
+			if(user.getUserName().equals(userName)) {
+				
+				if(user.getPassword().equals(password)) {
+					result= true;
+										
+				}
+				
+			}
+		}
+		return result;
 	}
 
 	@Override
@@ -21,16 +44,21 @@ public class UserDAOImplementation implements UserDAO{
 		String returnUserType=null;
 		for(User user:userList) {
 			if(user.getUserName().equals(userName)){
-			UserTypes userTypes=user.getUserType();
+			
+				UserTypes userTypes=user.getUserType();
 			
 			switch(userTypes) {
 			
-			case STUDENT:
-				returnUserType="STUDENT";
+			case LP:
+				returnUserType="LP";
 				break;
 				
 			case ADMIN:
 				returnUserType="ADMIN";
+				break;
+		    
+			case MENTOR:
+				returnUserType="MENTOR";
 				break;
 			
 			}
