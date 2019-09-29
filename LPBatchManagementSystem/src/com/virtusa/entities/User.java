@@ -16,7 +16,7 @@ public User() {
 	protected String emailAddress;
 	protected String phoneNumber;
 	
-	protected UserTypes userType;
+
 	
 	
 	public String getUserName() {
@@ -63,17 +63,12 @@ public User() {
 	}
 	
 	
-	public UserTypes getUserType() {
-		return userType;
-	}
-	public void setUserType(UserTypes userType) {
-		this.userType = userType;
-	}
+	
 	@Override
 	public String toString() {
 		return "User [userName=" + userName + ", password=" + password + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", dateOfBirth=" + dateOfBirth + ", emailAddress=" + emailAddress + ", phoneNumber="
-				+ phoneNumber + ", userType=" + userType + "]";
+				+ phoneNumber + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -86,7 +81,7 @@ public User() {
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
-		result = prime * result + ((userType == null) ? 0 : userType.hashCode());
+		
 		return result;
 	}
 	@Override
@@ -133,9 +128,7 @@ public User() {
 				return false;
 		} else if (!userName.equals(other.userName))
 			return false;
-		if (userType != other.userType)
-			return false;
-		return true;
+			return true;
 	}
 	
 	
