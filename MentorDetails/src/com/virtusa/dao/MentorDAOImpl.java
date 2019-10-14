@@ -1,6 +1,7 @@
 package com.virtusa.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import java.util.List;
 import com.virtusa.integrate.ConnectionManager;
 import com.virtusa.model.BatchDetailsModel;
 import com.virtusa.model.MentorDetailsModel;
+
 
 public class MentorDAOImpl implements MentorDAO {
 
@@ -70,5 +72,7 @@ public class MentorDAOImpl implements MentorDAO {
 		
 		return rows;
 	}
+
+	
 
 }

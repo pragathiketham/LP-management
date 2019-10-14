@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.virtusa.model.BatchDetailsModel;
 import com.virtusa.model.MentorDetailsModel;
+import com.virtusa.model.VenueDetailsModel;
 
 public interface MentorService {
 
@@ -12,4 +13,6 @@ public interface MentorService {
 	public List<BatchDetailsModel> getBatchDetails();
 
 	public int updatedmentordetails(String mentorid, String batchid);
+	
+
 }

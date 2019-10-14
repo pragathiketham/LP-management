@@ -7,6 +7,7 @@ import com.virtusa.dao.MentorDAO;
 import com.virtusa.helper.FactoryDB;
 import com.virtusa.model.BatchDetailsModel;
 import com.virtusa.model.MentorDetailsModel;
+import com.virtusa.model.VenueDetailsModel;
 
 public class MentorServiceImpl implements MentorService {
 
@@ -58,5 +59,7 @@ public class MentorServiceImpl implements MentorService {
 		}
 		return rowsupdated;
 	}
+
+	
 
 }

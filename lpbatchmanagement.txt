@@ -1,115 +1,191 @@
 
 Create Database lpadmindb;
 
+
 use  lpadmindb;
 
+
+
+==========Admimi table=======
 Create table AdminDetails(admin_id varchar(10) not null,
+
 first_name varchar(50),
 dob date not null,
+
 phone_number int(20) not null,
+
 email varchar(50) not null,
+
 batch_id varchar(20) default null,
+
 primary key (admin_id)); 
 
+
+
+=============lp table==========
 create table lpdetails(lp_id varchar(10) not null,
+
 first_name varchar(50),
 dob date not null,
+
 phone_number int(20) not null,
+
 email varchar(50) not null,
+
 batch_id varchar(20) default null,
+
 primary key (lp_id)); 
 
 
-
+===============batch table========
 
 
 
 create table batch(
 batch_id varchar(20) not null,
-batch_name varchar(20) 
-default null,
-batch_capacity int not null,
+
+batch_name varchar(20) default null,
+
+batch_capacity int(20) not null,
+
 batch_mentor_id varchar(20),
-batch_venue_id 
-varchar(20),
+
+batch_venue_id varchar(20),
+
 batch_startdate date,
+
 batch_enddate date);
 
-alter table batch modify column batch_capacity int(20) 
-not null;
 
 
+
+alter table batch modify column batch_capacity int(20) not null;
+
+
+
+==========venue table===============
 
 create table venue(
 venue_id varchar(20) not null,
+
 venue_name varchar(20) not null,
-venue_capacity int(20) 
-not null,
+
+venue_capacity int(20) not null,
+
 venue_location varchar(20) not null);
+
+
+
 
 show tables;
 
-i
-nsert into admindetails(admin_id,first_name,dob,phone_number,email)
+
+===============inserting admindetails====================
+
+
+
+insert into admindetails(admin_id,first_name,dob,phone_number,email)
+
 values("A002","pragathi",'1998-07-21',9703432,"kethampragathi@123");
 
 
 
 select * from admindetails;
 
-insert into 
-lpdetails(lp_id,first_name,dob,phone_number,email)
-values("L001","pakshika",'1997-05-22',826672,
-"kethampakshika@gmail.com"),
-("L002","sarala",'1996-03-12',57577,"saralakadudhula@gmail.com")
-,
+
+
+
+=====================inserting lpdetails==========================
+
+
+insert into lpdetails(lp_id,first_name,dob,phone_number,email)
+
+values("L001","pakshika",'1997-05-22',826672,"kethampakshika@gmail.com"),
+
+("L002","sarala",'1996-03-12',57577,"saralakadudhula@gmail.com"),
 ("L003","ravi",'1996-07-12',53272,"ravikadudhula@gmail.com"),
+
 ("L004","chintu",'1997-02-25',57577,"pendemchintu@gmail.com"),
 
 ("L005","chonith",'1996-05-12',57577,"ravikadudhula@gmail.com");
 
 
-create table 
 
-mentordetails(
+=======================mentordetails table==========================
+
+
+create table mentordetails(
 mentor_id varchar(10) not null,
-name varchar(50),
+
+name varchar(50) not null,
+
 phone_number int(20) not null,
+
 email varchar(50) not null,
+
 primary key (mentor_id)); 
+
+
+
 
 select md.name, md.phone_number, md.email,bt.batch_name
 from mentordetails as md
 on
 left join
-batch bt where md.mentor_id = bt.batch_mentor_id
+batch bt where md.mentor_id = bt.batch_mentor_id;
 
 
 
-alter table batch
+alter table batch 
 add  foreign key (batch_mentor_id)
 REFERENCES mentordetails(mentor_id);
 
+
+
+
+
+===================inserting mentordetails==========
+
+
 insert into mentordetails(mentor_id,name,phone_number,email)
+
 values("M001","pooja",783683,"poojadussa2gmail.com"),
+
 ("M002","durga",978261,"chantiakuthotagmail.com"),
+
 ("M003","pooja",3442683,"saiarjulagmail.com"),
+
 ("M004","pooja",721383,"samathamirthipatigmail.com"),
+
 ("M005","pooja",7244283,"umamedagamgmail.com");
+
+
+
+
+==========================inserting batchdetails===============
 
 insert into batch(batch_id ,batch_name ,batch_capacity,batch_mentor_id ,
  batch_startdate ,batch_enddate )
+
 values("B001","TECA1",15,"M001",'2019-06-12','2019-10-12'),
 
-insert into batch(batch_id ,batch_name ,batch_capacity,
- batch_startdate ,batch_enddate )
 
-values("B002","TECA2",20,'2109-06-12','2019-10-12'),
+("B002","TECA2",20,'2109-06-12','2019-10-12'),
+
 ("B003","TECA3",25,'2109-06-12','2019-10-12'),
+
 ("B004","TECA4",15,'2109-06-12','2019-10-12'),
+
 ("B005","TECA5",15,'2109-06-12','2019-10-12');
 
+
+
+
+
 select * from mentordetails
+
+
+
 select * from batch
 
 
