@@ -64,8 +64,7 @@ public class MentorDetailsController extends HttpServlet {
 
 		mentordetailslist = mentorservice.getMentorDetails();
 		batchdetailslist = mentorservice.getBatchDetails();
-		System.out.println(batchdetailslist.get(0).getBatchName());
-
+	
 		request.setAttribute("batchdetailsList", batchdetailslist);
 		request.setAttribute("mentordetailsList", mentordetailslist);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
@@ -78,7 +77,7 @@ public class MentorDetailsController extends HttpServlet {
 		List<MentorDetailsModel> mentordetailslist = new ArrayList<MentorDetailsModel>();
 
 		mentordetailslist = mentorservice.getMentorDetails();
-		System.out.println(mentordetailslist.get(0).getName());
+		
 
 		request.setAttribute("mentordetailsList", mentordetailslist);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
@@ -93,22 +92,14 @@ public class MentorDetailsController extends HttpServlet {
 		try {
 			String mentroId = request.getParameter("mentorid");
 			String batchId = request.getParameter("batchid");
-			System.out.println(mentroId+"  "+ batchId);
+			
 
 			rowsupdated = mentorservice.updatedmentordetails(mentroId, batchId);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (rowsupdated > 0)
-			SuccessMessage = "Batch Added Successfully";
-		else
-			SuccessMessage = "Batch Assigning Failed";
-
-		request.setAttribute("SuccessMessage", SuccessMessage);
-		response.sendRedirect("/MentorDetails/mentorlist");
-		//RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		//dispatcher.forward(request, response);
+		
 
 	}
 

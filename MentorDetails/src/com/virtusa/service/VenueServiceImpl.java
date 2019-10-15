@@ -1,11 +1,13 @@
 package com.virtusa.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.virtusa.dao.MentorDAO;
 import com.virtusa.dao.VenueDAO;
 import com.virtusa.helper.FactoryDB;
+import com.virtusa.model.BatchDetailsModel;
 import com.virtusa.model.VenueDetailsModel;
 
 public class VenueServiceImpl implements VenueService {
@@ -28,9 +30,37 @@ public class VenueServiceImpl implements VenueService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+System.out.println(venueDetailsModellist);
 		return venueDetailsModellist;
 		
+	}
+	
+	@Override
+	public List<BatchDetailsModel> getBatchDetails()  {
+		// TODO Auto-generated method stub
+		
+		List<BatchDetailsModel> batchDetailsModelList=new ArrayList<BatchDetailsModel>();
+		
+		try {
+			batchDetailsModelList=venueDAO.getBatchDetails();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return batchDetailsModelList;
+	}
+	@Override
+	public int updatedVenuedetails(String venueId, String batchId) {
+		// TODO Auto-generated method stub
+		
+		int rowsupdated = 0;
+		try {
+			rowsupdated = venueDAO.getUpdatedVenueDetails(venueId, batchId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rowsupdated;
+	
 	}
 
 }

@@ -24,8 +24,10 @@ public class MentorDAOImpl implements MentorDAO {
 		ResultSet resultSet=
 				statement.executeQuery("select md.mentor_id, md.name, md.phone_number, md.email,bt.batch_name from mentordetails md left join batch bt  ON  md.mentor_id = bt.batch_mentor_id");
 		
+		
+	
 		List<MentorDetailsModel> mentordetailsList=new ArrayList<>();
-		System.out.println(resultSet.getFetchSize()+"   resultset size");
+		
 		while(resultSet.next()) {
 			MentorDetailsModel mentorDetails=new MentorDetailsModel();
 			mentorDetails.setMentorid(resultSet.getString("mentor_id"));
@@ -35,6 +37,8 @@ public class MentorDAOImpl implements MentorDAO {
 			mentorDetails.setBatchname(resultSet.getString("batch_name"));
 			mentordetailsList.add(mentorDetails);
 		}
+		
+		
 		
 		ConnectionManager.closeConnection();
 		return mentordetailsList;

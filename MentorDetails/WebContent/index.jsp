@@ -28,7 +28,7 @@
 						<a class = "anchor" id="assignlink${mentorDetails.mentorid}"
 							href="${pageContext.request.contextPath}/batchlist">Assign</a>
 					<form  class="formtag" id="${mentorDetails.mentorid}" name="${mentorDetails.mentorid}" action="${pageContext.request.contextPath}/updatebatch">
-							<select id="batchid" name="batchid">
+							<select id="batchid" name="batchId">
 								<c:forEach items="${batchdetailsList}" var="batchdetails">
 									<option   value="${batchdetails.batchId}">${batchdetails.batchName}</option>
 								</c:forEach>
@@ -36,7 +36,8 @@
 								<input type="submit" value="Update" id="button${mentorDetails.mentorid}" />
 						</form>
 
-					</c:if> ${mentorDetails.batchname}</td>
+				</c:if>${mentorDetails.batchname}
+				 </td>
 			</tr>
 		</c:forEach>
 

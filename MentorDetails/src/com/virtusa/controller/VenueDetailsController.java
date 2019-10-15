@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.virtusa.helper.FactoryDB;
 import com.virtusa.model.BatchDetailsModel;
 import com.virtusa.model.MentorDetailsModel;
+import com.virtusa.model.VenueDetailsModel;
 import com.virtusa.service.MentorService;
 import com.virtusa.service.VenueService;
 
@@ -42,9 +43,9 @@ public class VenueDetailsController extends  HttpServlet{
 		String action = request.getServletPath();
 		switch (action) {
 		case "/venuelist":
-			mentorDetailList(request, response);
+			venueDetailList(request, response);
 			break;
-		case "/batchlist":
+		case "/venuebatchlist":
 			batchDetailList(request, response);
 			break;
 
@@ -54,7 +55,7 @@ public class VenueDetailsController extends  HttpServlet{
 			break;
 		default:
 
-			mentorDetailList(request, response);
+			venueDetailList(request, response);
 			break;
 		}
 	}
@@ -62,29 +63,29 @@ public class VenueDetailsController extends  HttpServlet{
 	private void batchDetailList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<BatchDetailsModel> batchdetailslist = new ArrayList<BatchDetailsModel>();
-		List<MentorDetailsModel> mentordetailslist = new ArrayList<MentorDetailsModel>();
+		List<BatchDetailsModel> batchdetailslist1 = new ArrayList<BatchDetailsModel>();
+		List<VenueDetailsModel> venuedetailslist = new ArrayList<VenueDetailsModel>();
 
-		mentordetailslist = mentorservice.getMentorDetails();
-		batchdetailslist = mentorservice.getBatchDetails();
-		System.out.println(batchdetailslist.get(0).getBatchName());
+		venuedetailslist = venueservice.getVenueDetails();
+		batchdetailslist1 = venueservice.getBatchDetails();
+		
 
-		request.setAttribute("batchdetailsList", batchdetailslist);
-		request.setAttribute("mentordetailsList", mentordetailslist);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		request.setAttribute("batchdetailsList1", batchdetailslist1);
+		request.setAttribute("venuedetailsList", venuedetailslist);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("venueindex.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private void mentorDetailList(HttpServletRequest request, HttpServletResponse response)
+	private void venueDetailList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<MentorDetailsModel> mentordetailslist = new ArrayList<MentorDetailsModel>();
+		List<VenueDetailsModel> venuedetailslist = new ArrayList<VenueDetailsModel>();
 
-		mentordetailslist = mentorservice.getMentorDetails();
-		System.out.println(mentordetailslist.get(0).getName());
+		venuedetailslist = venueservice.getVenueDetails();
+	
 
-		request.setAttribute("mentordetailsList", mentordetailslist);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		request.setAttribute("venuedetailslist", venuedetailslist);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("venueindex.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -94,24 +95,16 @@ public class VenueDetailsController extends  HttpServlet{
 		
 		int rowsupdated = 0;
 		try {
-			String mentroId = request.getParameter("mentorid");
-			String batchId = request.getParameter("batchid");
-			System.out.println(mentroId+"  "+ batchId);
+			String venueId = request.getParameter("venueId");
+			String batchId = request.getParameter("batchId");
+			
 
-			rowsupdated = mentorservice.updatedmentordetails(mentroId, batchId);
+			rowsupdated = venueservice.updatedVenuedetails(venueId, batchId);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (rowsupdated > 0)
-			SuccessMessage = "Batch Added Successfully";
-		else
-			SuccessMessage = "Batch Assigning Failed";
-
-		request.setAttribute("SuccessMessage", SuccessMessage);
-		response.sendRedirect("/MentorDetails/mentorlist");
-		//RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		//dispatcher.forward(request, response);
+		
 
 	}
 
@@ -119,4 +112,3 @@ public class VenueDetailsController extends  HttpServlet{
 
 	
 
-}

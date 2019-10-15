@@ -4,6 +4,7 @@ public class BatchDetailsModel {
 
 	private String batchName;
 	private String batchId;
+	
 	public String getBatchName() {
 		return batchName;
 	}
